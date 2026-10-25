@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -n \"${CLAUDE_ENV_FILE:-}\" ]; then echo \"export NODE_OPTIONS=--import=$CLAUDE_PROJECT_DIR/node_modules/robots-guard/src/preload.mjs\" >> \"$CLAUDE_ENV_FILE\"; fi"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^WebFetch$|^mcp__.*(navigate|new_page|goto|open_url|fetch|scrape|crawl)",
+        "hooks": [{ "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/node_modules/robots-guard/src/robots-guard.mjs\" hook" }]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [{ "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/node_modules/robots-guard/src/robots-guard.mjs\" hook" }]
+      }
+    ]
+  }
+}

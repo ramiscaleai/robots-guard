@@ -1,0 +1,31 @@
+{
+  "name": "robots-guard",
+  "version": "1.0.0",
+  "description": "Make every fetch(), undici and Playwright request of a Node.js process obey robots.txt (RFC 9309) and Crawl-delay; also a Claude Code hook.",
+  "keywords": ["robots.txt", "rfc9309", "crawl-delay", "crawler", "scraping", "playwright", "undici", "claude-code"],
+  "license": "MIT",
+  "author": "Rami Hersonsky",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramiscaleai/robots-guard.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.15"
+  },
+  "exports": {
+    ".": "./src/robots-guard.mjs",
+    "./preload": "./src/preload.mjs"
+  },
+  "bin": {
+    "robots-guard": "src/robots-guard.mjs"
+  },
+  "files": ["src"],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1",
+    "undici": "^6.29.1"
+  }
+}
